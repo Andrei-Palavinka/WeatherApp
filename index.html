@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <header class="header">
+      <div class="container__header">
+        <a href="#" class="header__logo">
+          <img src="img/logo.png" alt="logo wether" />
+          <span class="logo-weather-span">Wheather</span>
+        </a>
+
+        <div class="serch">
+          <form class="header__seach input" onsubmit="return false">
+            <div class="input__icon"><img src="img/search.svg" alt="" /></div>
+            <input placeholder="Поиск" type="text" class="input__input" />
+          </form>
+          <button class="geolocation"><img src="img/location.svg" alt="" /></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container__weather">
+      <div class="loader-container hide">
+        <div class="loader"></div>
+      </div>
+      <div class="weather-app">
+        <h1>Погода</h1>
+        <div id="weather-results weather">
+          <div id="today-weather">
+            <div class="weather__main">
+              <h2>Сегодня</h2>
+              <h3 class="weather__date"></h3>
+              
+              <div class="weather__main-content">
+								<div class="weather__main-content-left">
+									<img class="current-weather-icon main-weather-icon" />
+								</div>
+								<div class="weather__main-content-right">
+									<div id="today-temperature"></div>
+                	<div class="weather__feels_like"></div>
+                	<div id="today-description"></div>
+                	<div class="weather__humidity"></div>
+                	<div class="weather__pressure"></div>
+                	<div class="weather__pollution"></div>
+								</div>
+                
+              </div>
+            </div>
+						<div class="weather__weather__hours-container">
+							<h2>Прогноз по часам</h2>
+							<div class="weather__weather__hours"></div>
+
+						</div>
+          </div>
+          <div id="forecast-weather">
+            <h2>Прогноз на 5 дней</h2>
+            <div id="forecast-list"></div>
+          </div>
+        </div>
+      </div>
+
+			<section class="resently">
+				<div class="resently__container">
+					<h2 class="resently__title">Недавние запросы</h2>
+					<div class="resently__row"></div>
+				</div>
+			</section>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
