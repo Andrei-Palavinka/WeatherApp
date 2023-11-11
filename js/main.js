@@ -33,6 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }
-
+	getUserLocation();
   loadResentlyListFromLocalStorage();
 });

@@ -37,16 +37,8 @@ const renderForecastList = (list) => {
     const pod = forecast.sys.pod;
 
     const isToday = new Date().getDate() === new Date(forecast.dt_txt).getDate();
-    const lastDate = new Date(list[list.length - 1].dt_txt).toLocaleDateString("ru-RU", {
-      weekday: "long",
-      hour: "2-digit",
-    });
-    const compareDate = new Date(forecast.dt_txt).toLocaleDateString("ru-RU", {
-      weekday: "long",
-      hour: "2-digit",
-    });
 
-    if (date !== currentDate || compareDate === lastDate) {
+    if (date !== currentDate) {
       if (dailyTemperatures.day.length > 0 || dailyTemperatures.night.length > 0) {
         const avgDayTemp =
           dailyTemperatures.day.reduce((acc, temp) => acc + temp, 0) / dailyTemperatures.day.length;
@@ -56,15 +48,19 @@ const renderForecastList = (list) => {
 
         const maxTemp = Math.round(Math.max(...arrAllDayTemp));
 
-        const temperature = `День: ${Math.round(avgDayTemp)}°C, Ночь: ${Math.round(
-          avgNightTemp
-        )}°C`;
+        const temperature = `День: ${avgDayTemp ? Math.round(avgDayTemp) : "-"} °C, Ночь: ${
+          avgNightTemp ? Math.round(avgNightTemp) : "-"
+        } °C`;
 
         const icon = getIconForecast(dailyTemperatures.forecastDayIcon);
-        const condidate = foreCastData.find((item) => item.weather[0].icon === icon);
+        console.log("icon", icon);
+
+        const condidate = foreCastData.find((item) => {
+          return item.weather[0].icon === icon;
+        });
 
         const description = condidate.weather[0].description;
-        console.log("description", description);
+
         const forecastItem = createForecastItemForecast({
           date: currentDate,
           temperature,
@@ -84,19 +80,17 @@ const renderForecastList = (list) => {
 
     arrAllDayTemp.push(forecast.main.temp);
 
-    if (!isToday) {
-      if (pod === "d") {
-        dailyTemperatures.forecastDayIcon.push(forecast.weather[0].icon);
-        dailyTemperatures.day.push(forecast.main.temp);
-      } else if (pod === "n") {
-        dailyTemperatures.night.push(forecast.main.temp);
-      }
-      foreCastData.push(forecast);
+    if (isToday) {
+      dailyTemperatures.forecastDayIcon.push(forecast.weather[0].icon.slice(0, -1) + "n");
     }
 
-    if (forecastList.children.length >= 6) {
-      break;
+    if (pod === "d") {
+      dailyTemperatures.forecastDayIcon.push(forecast.weather[0].icon);
+      dailyTemperatures.day.push(forecast.main.temp);
+    } else if (pod === "n") {
+      dailyTemperatures.night.push(forecast.main.temp);
     }
+    foreCastData.push(forecast);
   }
 };
 

@@ -7,11 +7,29 @@ export const getMediumTemp = (list = []) => {
 };
 
 export const getIconForecast = (list) => {
-  return (
-    list
-      .map((item) => {
-        return item.slice(0, -1);
-      })
-      .sort((a, b) => b - a)[0] + "d"
-  );
+  if (isDayExist(list)) {
+    const filterArr = list.filter((item) => {
+      return item.split("")[item.length - 1] == "d";
+    });
+
+    return (
+      filterArr
+        .map((item) => {
+          return item.slice(0, -1);
+        })
+        .sort((a, b) => b - a)[0] + "d"
+    );
+  } else {
+    return (
+      list
+        .map((item) => {
+          return item.slice(0, -1);
+        })
+        .sort((a, b) => b - a)[0] + "n"
+    );
+  }
+};
+
+const isDayExist = (list) => {
+  return list.join("").includes("d");
 };
