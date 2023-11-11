@@ -28,7 +28,7 @@ export const currentWeatherData = async (weatherData, key) => {
     city: data.name,
     temperature: data.main.temp,
     description: data.weather[0].description,
-    src: `/img/animated/${data.weather[0].icon}.svg`,
+    src: `./img/animated/${data.weather[0].icon}.svg`,
   };
   addResentlyItem(itemResently);
   showResentlyItem();
@@ -66,7 +66,7 @@ const showMainTemp = (data) => {
   humidity.textContent = `Влажность: ${data.main.humidity}%`;
   presssure.textContent = `Давление: ${data.main.pressure} гПа`;
   feelsLike.textContent = `Ощущается: ${Math.round(data.main.feels_like)}°C`;
-  currentWeatherIcon.src = `/img/animated/${data.weather[0].icon}.svg`;
+  currentWeatherIcon.src = `./img/animated/${data.weather[0].icon}.svg`;
   todayTemperature.textContent = `Температура: ${Math.round(temperature)}°C`;
   todayDescription.textContent = `Облачность: ${description}`;
   weatherDate.textContent = date.toLocaleTimeString("ru-RU", {

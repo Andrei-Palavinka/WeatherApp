@@ -124,7 +124,7 @@ const createForecastItemCurrent = ({ date, temperature, description, icon }) => 
         <p class="item__date">${date}</p>
         <p>Температура : ${Math.round(temperature)}°C </p>
         <p>Облачность: ${description}</p>
-        <img src="/img/animated/${icon}.svg" class="forecast-weather-icon" />
+        <img src="./img/animated/${icon}.svg" class="forecast-weather-icon" />
       `;
   return forecastItem;
 };
@@ -137,7 +137,7 @@ const createForecastItemForecast = ({ date, temperature, description, icon, maxT
         <p>Температура: ${maxTemp}°C</p>
         <p>${temperature}</p>
         <p>Облачность: ${description}</p>
-        <img src="/img/animated/${icon}.svg" class="forecast-weather-icon" />
+        <img src="./img/animated/${icon}.svg" class="forecast-weather-icon" />
       `;
   return forecastItem;
 };
